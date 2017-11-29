@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.staticfiles.views import serve
 
 urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
-    url(r'^time_manager/', include('time_manager.urls')),
+    url(r'^api/', include('time_manager.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^$', serve, kwargs={'path': 'index.html'})
 ]

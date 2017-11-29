@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'time_manager.apps.TimeManagerConfig',
     # rest framework
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -126,3 +128,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend/dist')
+
+STATICFILES_DIRS = [
+    os.path.join(ANGULAR_APP_DIR),
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
