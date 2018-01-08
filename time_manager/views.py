@@ -3,12 +3,24 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
-from time_manager.models import Task
-from time_manager.serializers import TaskSerializer
+import logging
 
+from time_manager.models import Task, Project
+from time_manager.serializers import TaskSerializer, ProjectSerializer
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     return HttpResponse("Hello world")
+
+
+class ProjectList(APIView):
+
+    def get(self, request):
+        projects = Project.objects.all()
+        serializer = ProjectSerializer(projects, many=True)
+        response = Response(serializer.data)
+        return response
 
 
 class TaskList(APIView):

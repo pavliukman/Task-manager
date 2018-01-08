@@ -1,0 +1,11 @@
+<h3>Projects:</h3>
+<ul class="projects">
+    <li *ngFor="let project of projects">
+        <b>{{project.name}}</b>
+        <ul class="tasks">
+            <li *ngFor="let task of project.tasks">
+                {{task.name}}
+            </li>
+        </ul>
+    </li>
+</ul>
