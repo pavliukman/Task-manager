@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
@@ -16,11 +18,20 @@ def index(request):
 
 class ProjectList(APIView):
 
+    #permission_classes = (AllowAny,)
+
     def get(self, request):
         projects = Project.objects.all()
         serializer = ProjectSerializer(projects, many=True)
         response = Response(serializer.data)
         return response
+
+    def post(self, request):
+        serializer = ProjectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TaskList(APIView):

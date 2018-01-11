@@ -1,1 +1,27 @@
-<app-projects></app-projects>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" id="menu">
+            <div id="avatar">
+                <img src="https://pickaface.net/assets/images/slides/slide2.png" alt="">
+                <p>Name</p>
+            </div>
+            <ul id="menu-list">
+                <li>
+                    <a routerLink="/profile">Profile</a>
+                </li>
+                <li>
+                    <a routerLink="/projects">Projects</a>
+                </li>
+                <li>
+                    <a routerLink="/tasks">Tasks</a>
+                </li>
+                <li>
+                    <a routerLink="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

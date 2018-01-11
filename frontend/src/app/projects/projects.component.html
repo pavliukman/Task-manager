@@ -9,3 +9,12 @@
         </ul>
     </li>
 </ul>
+<div>
+    <label>Project name:
+          <input #projectName />
+        </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(projectName.value); projectName.value=''">
+          add
+        </button>
+</div>

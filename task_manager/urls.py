@@ -16,11 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.staticfiles.views import serve
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^api/', include('time_manager.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^$', serve, kwargs={'path': 'index.html'})
+    url(r'^$', serve, kwargs={'path': 'index.html'}),
+
+    # jwt authentication
+    url(r'^auth-jwt/', obtain_jwt_token),
+    url(r'^auth-jwt-refresh/', refresh_jwt_token),
+    url(r'^auth-jwt-verify/', verify_jwt_token),
 ]
