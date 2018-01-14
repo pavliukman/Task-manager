@@ -3,7 +3,7 @@
         <div class="col-md-2" id="menu">
             <div id="avatar">
                 <img src="https://pickaface.net/assets/images/slides/slide2.png" alt="">
-                <p>Name</p>
+                <p>{{user.username}}</p>
             </div>
             <ul id="menu-list">
                 <li>
@@ -16,7 +16,7 @@
                     <a routerLink="/tasks">Tasks</a>
                 </li>
                 <li>
-                    <a routerLink="/logout">Logout</a>
+                    <a (click)="logout()">Logout</a>
                 </li>
             </ul>
         </div>

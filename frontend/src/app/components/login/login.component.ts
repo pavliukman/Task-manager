@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,9 @@ import { User } from '../../models/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: User = new User();
+  user: User;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private app: AppComponent) { }
 
   ngOnInit() {
   }
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.user)
     .subscribe(user => {
       localStorage.setItem('token', user.token);
+      localStorage.setItem('user', JSON.stringify(user.user));
       this.router.navigateByUrl('/profile');
     });
   }
-
 }

@@ -3,14 +3,14 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class TokenService implements HttpInterceptor {
+export class InterceptorService implements HttpInterceptor {
 
   constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        Authorization: `JWT ${localStorage.getItem('token')}`
       }
     });
 

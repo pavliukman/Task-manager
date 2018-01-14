@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from '../project';
-import { ProjectService } from '../project.service';
+import { Project } from '../models/project';
+import { ProjectService } from '../services/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -23,6 +23,7 @@ export class ProjectsComponent implements OnInit {
       );
   }
 
+  // add new project
   add(name: string): void {
     name = name.trim();
     if(!name) {return;}
@@ -30,5 +31,15 @@ export class ProjectsComponent implements OnInit {
       .subscribe(project => {
         this.projects.push(project);
       });
+  }
+
+  // edit project
+  edit(): void {
+
+  }
+
+  // delete project
+  delete(): void {
+
   }
 }

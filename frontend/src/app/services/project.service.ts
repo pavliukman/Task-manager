@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Project } from './project';
+import { Project } from '../models/project';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('token')}`
   })
 };
 
@@ -18,7 +17,6 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   getProjects(): Observable<Project[]> {
-    console.log(httpOptions);
     return this.http.get<Project[]>(this.url, httpOptions);
   }
 
