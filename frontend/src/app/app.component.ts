@@ -13,7 +13,9 @@ export class AppComponent {
   constructor(public auth: AuthService){}
 
   ngOnInit() {
-    this.getUser();
+    if(this.auth.getToken() !== '') {
+      this.getUser();
+    }
   }
 
   getUser() {

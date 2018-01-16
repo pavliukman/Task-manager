@@ -1,6 +1,4 @@
 from django.http import HttpResponse
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
@@ -8,7 +6,7 @@ from rest_framework import status
 import logging
 
 from time_manager.models import Task, Project
-from time_manager.serializers import TaskSerializer, ProjectSerializer
+from time_manager.serializers import TaskSerializer, ProjectSerializer, UserSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -47,3 +45,10 @@ class TaskList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# send user data with token
+def jwt_response_payload_handler(token, user=None, request=None):
+    return {
+        'token': token,
+        'user': UserSerializer(user, context={'request': request}).data
+    }

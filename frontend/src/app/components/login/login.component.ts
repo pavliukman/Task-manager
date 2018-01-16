@@ -11,7 +11,7 @@ import { AppComponent } from '../../app.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: User;
+  user: User = new User();
 
   constructor(private auth: AuthService, private router: Router, private app: AppComponent) { }
 
@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     this.auth.login(this.user)
-    .subscribe(user => {
-      localStorage.setItem('token', user.token);
-      localStorage.setItem('user', JSON.stringify(user.user));
-      this.router.navigateByUrl('/profile');
-    });
+      .subscribe(user => {
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('user', JSON.stringify(user.user));
+        this.router.navigateByUrl('/profile');
+      });
   }
 }

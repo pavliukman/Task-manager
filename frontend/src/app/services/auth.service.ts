@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 export const TOKEN_NAME: string = 'jwt_token';
 
@@ -20,13 +21,13 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  login(user): Observable<any> {
-    let url = `${this.BASE_URL}/login`;
-    return this.http.post(url, user, httpOptions);
+  login(user: User): Observable<any> {
+    return this.http.post(this.BASE_URL, user, httpOptions);
   }
 
   logout(): void {
     localStorage.setItem('token', '');
+    localStorage.setItem('user', '');
     this.router.navigateByUrl('/login');
   }
 
