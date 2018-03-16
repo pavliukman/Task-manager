@@ -7,6 +7,11 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor() { }
 
+  /**
+   * Adds authorization header to request 
+   * @param request 
+   * @param next 
+   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {

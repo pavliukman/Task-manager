@@ -16,14 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.staticfiles.views import serve
+from django.views.generic import RedirectView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 urlpatterns = [
-    url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^api/', include('time_manager.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
     url(r'^$', serve, kwargs={'path': 'index.html'}),
+    url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$',
+        RedirectView.as_view(url='/static/%(path)s', permanent=False)),
 
     # jwt authentication
     url(r'^auth-jwt/', obtain_jwt_token),
