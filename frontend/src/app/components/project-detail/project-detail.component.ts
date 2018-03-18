@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../models/project';
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -12,7 +15,8 @@ export class ProjectDetailComponent implements OnInit {
   project: Project;
 
   constructor(private route: ActivatedRoute,
-              private projectService: ProjectService) { }
+              private projectService: ProjectService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getProject();
@@ -22,6 +26,12 @@ export class ProjectDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.projectService.getProject(id)
       .subscribe(project => this.project = project);
+  }
+
+  taskDialog() {
+    this.dialog.open(TaskDialogComponent, {
+      width: '50%'
+    });    
   }
 
 }

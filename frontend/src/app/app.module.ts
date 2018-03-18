@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,6 +24,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DataService } from './services/data.service';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
+import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,15 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
     MenuComponent,
     DashboardComponent,
     ProjectDetailComponent,
+    TaskDialogComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ProjectService,
@@ -51,6 +57,7 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
       useClass: InterceptorService,
       multi: true
     }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [TaskDialogComponent]
 })
 export class AppModule { }
