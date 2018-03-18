@@ -1,4 +1,4 @@
 export class User {
-    token: string;
+    token?: string;
     constructor(username?: string, password?: string) {}
 }
