@@ -3,9 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatTableModule, MatGridListModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './material.module';
 
 // components
 import { AppComponent } from './app.component';
@@ -27,37 +33,45 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProjectsComponent,
-    ProfileComponent,
-    LoginComponent,
-    RegisterComponent,
-    MenuComponent,
-    DashboardComponent,
-    ProjectDetailComponent,
-    TaskDialogComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    MatDialogModule,
-    BrowserAnimationsModule
-  ],
-  providers: [
-    ProjectService,
-    UserService, 
-    AuthService,
-    AuthGuard,
-    DataService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
-    }],
-  bootstrap: [AppComponent],
-  entryComponents: [TaskDialogComponent]
+    declarations: [
+        AppComponent,
+        ProjectsComponent,
+        ProfileComponent,
+        LoginComponent,
+        RegisterComponent,
+        MenuComponent,
+        DashboardComponent,
+        ProjectDetailComponent,
+        TaskDialogComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        AppRoutingModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MaterialModule,
+        MatGridListModule,
+        MatInputModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatDividerModule,
+        MatListModule
+    ],
+    providers: [
+        ProjectService,
+        UserService,
+        AuthService,
+        AuthGuard,
+        DataService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: InterceptorService,
+            multi: true
+        }],
+    bootstrap: [AppComponent],
+    entryComponents: [TaskDialogComponent]
 })
 export class AppModule { }

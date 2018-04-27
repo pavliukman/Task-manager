@@ -1,3 +1,6 @@
 .projects {
     list-style-type: none;
 }
+.new-project-toolbar {
+    margin-top: 15px;
+}

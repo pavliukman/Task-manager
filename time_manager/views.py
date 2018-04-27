@@ -65,6 +65,11 @@ class ProjectDetail(APIView):
 
 
 class TaskList(APIView):
+    def get_task(self, pk):
+        try:
+            return Task.objects.get(pk=pk)
+        except Task.DoesNotExist:
+            raise Http404
 
     def get(self, request):
         tasks = Task.objects.all()
@@ -77,6 +82,12 @@ class TaskList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        task = self.get_task(pk)
+        task.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 # send user data with token
 def jwt_response_payload_handler(token, user=None, request=None):

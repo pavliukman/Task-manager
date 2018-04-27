@@ -1,8 +1,6 @@
-<div class="container-fluid">
-    <div *ngIf="isUserLoggedIn; else loginBlock" class="row">
-        <router-outlet></router-outlet>
-    </div>
-    <ng-template #loginBlock>
-        <app-login></app-login>
-    </ng-template>
+<div *ngIf="isUserLoggedIn; else loginBlock">
+    <router-outlet></router-outlet>
 </div>
+<ng-template #loginBlock>
+    <app-login></app-login>
+</ng-template>
