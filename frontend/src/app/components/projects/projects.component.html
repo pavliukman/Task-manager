@@ -13,7 +13,7 @@
             <h4>Add new project</h4>
         </mat-toolbar-row>
         <mat-toolbar-row>
-            <mat-form-field class="example-full-width">
+            <mat-form-field>
                 <input #projectName matInput placeholder="Project name">
             </mat-form-field>
             <button (click)="add(projectName.value); projectName.value=''" mat-raised-button color="primary" class="button-row">Add</button>

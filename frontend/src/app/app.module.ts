@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -58,7 +59,8 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
         MatToolbarModule,
         MatCardModule,
         MatDividerModule,
-        MatListModule
+        MatListModule,
+        MatSelectModule
     ],
     providers: [
         ProjectService,
