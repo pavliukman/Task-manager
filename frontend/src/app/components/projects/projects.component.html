@@ -2,7 +2,7 @@
     <h2>Projects</h2>
     <mat-list class="projects" class="list-group">
         <mat-list-item *ngFor="let project of projects" class="list-group-item">
-            <a href="profile/projects/{{project.id}}">{{project.name}}</a>
+            <a routerLink="{{project.id}}">{{project.name}}</a>
             <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
