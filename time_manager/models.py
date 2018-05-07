@@ -1,4 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
+class Role(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField(default='', blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Project(models.Model):
@@ -7,6 +16,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Member(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, related_name='roles', on_delete=models.DO_NOTHING)
+    assigned_projects = models.ManyToManyField(Project)
 
 
 class Task(models.Model):

@@ -48,7 +48,6 @@ export class ProjectService {
 
     deleteTask(pk) {
         let url = this.tasksUrl + pk + '/';
-        console.log(url);
         return this.http.delete(url, pk);
     }
 }

@@ -1,22 +1,28 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+    selector: 'app-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  @Input() username: string;
+    userName: String;
+    id: String;
 
-  constructor(private auth: AuthService) { }
+    constructor(private auth: AuthService, private user: UserService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        let user = this.user.getUserLocal();
+        this.userName = user['first_name'] + ' ' + user['last_name'] || '';
+        this.id = user['username'];
+        console.log(user);
+    }
 
-  logout(): void {
-    this.auth.logout();
-  }
+    logout(): void {
+        this.auth.logout();
+    }
 
 }

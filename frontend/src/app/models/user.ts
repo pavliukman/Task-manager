@@ -1,4 +1,7 @@
 export class User {
-    token?: string;
-    constructor(username?: string, password?: string) {}
+    name?: String;
+    lastName?: String;
+    userName?: String
+    token?: String;
+    constructor(username?: String, password?: String) { }
 }

@@ -2,8 +2,9 @@
     <div id="avatar">
         <img src="https://pickaface.net/assets/images/slides/slide2.png" alt="">
     </div>
+    <span class="user-name">{{userName}}</span>
     <a routerLink="/profile/dashboard">Dashboard</a>
-    <a routerLink="/profile">Profile</a>
+    <a routerLink="/profile/user/{{id}}">Profile</a>
     <a routerLink="/profile/projects">Projects</a>
     <a (click)="logout()">Logout</a>
 </div>

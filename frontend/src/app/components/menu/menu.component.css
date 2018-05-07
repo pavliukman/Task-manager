@@ -26,3 +26,10 @@
 #menu a:hover {
     background: #3a3a3a;
 }
+
+#menu .user-name {
+    color: white;
+    display: block;
+    text-align: center;
+    padding-bottom: 30px;
+}

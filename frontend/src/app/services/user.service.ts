@@ -2,22 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../models/user';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 
-    'Content-Type': 'application/json',
-  })
-};
+import { DataService } from './data.service';
 
 @Injectable()
 export class UserService {
 
-  private url = '';
+    constructor(private http: HttpClient, private data: DataService) { }
 
-  constructor(private http: HttpClient) { }
+    /**
+     * Loads user data from server by token
+     */
+    getUser(): Observable<User> {
+        let data = new FormData();
+        data.append('token', localStorage.token);
+        data.append('Content-Type', 'application/json');
+        return this.http.post(this.data.API_URL_VERIFY, data);
+    }
 
-  getUser(): Observable<User> {
-    return this.http.get(this.url);
-  }
+    /**
+     * Returns user data from localStorage
+     */
+    getUserLocal(): string {
+        return JSON.parse(localStorage.getItem('user'));
+    }
 
 }
