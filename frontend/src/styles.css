@@ -22,3 +22,7 @@ ul {
 .full-width {
     width: 100%;
 }
+
+.cursor-pointer-span {
+    cursor: pointer;
+}

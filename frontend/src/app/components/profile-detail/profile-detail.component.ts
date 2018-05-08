@@ -16,7 +16,6 @@ export class ProfileDetailComponent implements OnInit {
 
         this.userService.getUser().subscribe(user => {
             let userObj = user['user'];
-            console.log('userObj', userObj);
             localStorage.setItem('user', JSON.stringify(user['user']));
             this.user.name = userObj['first_name'];
         });

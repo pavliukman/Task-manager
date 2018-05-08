@@ -18,7 +18,6 @@ export class MenuComponent implements OnInit {
         let user = this.user.getUserLocal();
         this.userName = user['first_name'] + ' ' + user['last_name'] || '';
         this.id = user['username'];
-        console.log(user);
     }
 
     logout(): void {

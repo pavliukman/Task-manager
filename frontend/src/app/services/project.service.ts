@@ -21,6 +21,7 @@ export class ProjectService {
         private data: DataService) { }
 
     private projectsUrl = this.data.API_URL + '/api/projects/';
+    private projectUrl = this.data.API_URL + '/api/project/';
     private tasksUrl = this.data.API_URL + '/api/tasks/';
 
     getProjects(): Observable<Project[]> {
@@ -44,6 +45,11 @@ export class ProjectService {
 
     addTask(task: Task) {
         return this.http.post<Task>(this.tasksUrl, task, httpOptions);
+    }
+
+    deleteProject(pk) {
+        let url = this.projectUrl + pk + '/';
+        return this.http.delete(url, pk);
     }
 
     deleteTask(pk) {

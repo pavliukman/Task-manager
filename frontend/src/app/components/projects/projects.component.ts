@@ -2,47 +2,57 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+    selector: 'app-projects',
+    templateUrl: './projects.component.html',
+    styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  @Input() project: Project;
-  projects: Project[];
+    project = new Project();
+    projects: Project[];
+    displayedColumns = ['name', 'description', 'action'];
+    projectForm: FormGroup;
 
-  constructor(private projectService: ProjectService,
-    private route: ActivatedRoute) { }
+    constructor(private projectService: ProjectService,
+        private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.getProjects();
-  }
+    ngOnInit() {
+        this.getProjects();
+    }
 
-  getProjects(): void {
-    this.projectService.getProjects()
-      .subscribe(projects =>
-        this.projects = projects
-      );
-  }
+    getProjects(): void {
+        this.projectService.getProjects()
+            .subscribe(projects =>
+                this.projects = projects
+            );
+    }
 
-  // add new project
-  add(name: string): void {
-    name = name.trim();
-    if(!name) {return;}
-    this.projectService.addProject({name} as Project)
-      .subscribe(project => {
-        this.projects.push(project);
-      });
-  }
+    // add new project
+    add(): void {
+        if (!this.project.name) {
+            return;
+        }
+        this.projectService.addProject(this.project).subscribe(project => {
+            this.getProjects();
+            this.project.name = '';
+            this.project.description = '';
+        });
+    }
 
-  // edit project
-  edit(): void {
+    // edit project
+    edit(): void {
 
-  }
+    }
 
-  // delete project
-  delete(): void {
-
-  }
+    // delete project
+    delete(id): void {
+        let confirmation = confirm('Are you sure?');
+        if (confirmation) {
+            this.projectService.deleteProject(id).subscribe(data => {
+                this.getProjects();
+            });
+        }
+    }
 }

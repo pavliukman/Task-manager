@@ -7,33 +7,33 @@ import { ProjectDetailComponent } from '../project-detail/project-detail.compone
 import { EventEmitter } from 'events';
 
 @Component({
-  selector: 'app-task-dialog',
-  templateUrl: './task-dialog.component.html',
-  styleUrls: ['./task-dialog.component.css']
+    selector: 'app-task-dialog',
+    templateUrl: './task-dialog.component.html',
+    styleUrls: ['./task-dialog.component.css']
 })
 export class TaskDialogComponent implements OnInit {
-  task = new Task();
-  taskFrom: FormGroup;
+    task = new Task();
+    taskFrom: FormGroup;
 
-  constructor(private matDialogRef: MatDialogRef<TaskDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    constructor(private matDialogRef: MatDialogRef<TaskDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
 
-    private projectService: ProjectService) { }
+        private projectService: ProjectService) { }
 
-  private statuses = ['In Progress', 'New', 'In Testing', 'Solved'];
+    private statuses = ['In Progress', 'New', 'In Testing', 'Solved'];
 
-  ngOnInit() {}
+    ngOnInit() { }
 
-  submitted = false;
+    submitted = false;
 
-  addTask() {
-    this.submitted = true;
-    if (!this.task.name) {
-      return;
+    addTask() {
+        this.submitted = true;
+        if (!this.task.name) {
+            return;
+        }
+        this.task.project = this.data.projectId;
+        this.projectService.addTask(this.task).subscribe(task => {
+            this.matDialogRef.close();
+        });
     }
-    this.task.project = this.data.projectId;
-    this.projectService.addTask(this.task).subscribe(task => {
-      this.matDialogRef.close();
-    });
-  }
 }

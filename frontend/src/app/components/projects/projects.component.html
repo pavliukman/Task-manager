@@ -1,22 +1,49 @@
 <mat-card>
     <h2>Projects</h2>
-    <mat-list class="projects" class="list-group">
-        <mat-list-item *ngFor="let project of projects" class="list-group-item">
-            <a routerLink="{{project.id}}">{{project.name}}</a>
-            <mat-divider></mat-divider>
-        </mat-list-item>
-    </mat-list>
+    <mat-table #table [dataSource]="projects">
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name:</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <a routerLink="{{element.id}}">{{ element.name }}</a>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef>Description:</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <span>{{ element.description }}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>Action:</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <span class="cursor-pointer-span" (click)="delete(element.id)">&#10006;</span>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
 </mat-card>
 <div class="new-project-toolbar">
-    <mat-card>
-        <mat-toolbar-row>
-            <h4>Add new project</h4>
-        </mat-toolbar-row>
-        <mat-toolbar-row>
-            <mat-form-field>
-                <input #projectName matInput placeholder="Project name">
-            </mat-form-field>
-            <button (click)="add(projectName.value); projectName.value=''" mat-raised-button color="primary" class="button-row">Add</button>
-        </mat-toolbar-row>
-    </mat-card>
+    <form (ngSubmit)="add()" #projectForm="ngForm">
+        <mat-card>
+            <mat-toolbar-row>
+                <h4>Add new project</h4>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <mat-form-field>
+                    <input [(ngModel)]="project.name" name="name" #name="ngModel" required matInput placeholder="Name">
+                </mat-form-field>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <mat-form-field>
+                    <input [(ngModel)]="project.description" name="description" #description="ngModel" required matInput placeholder="Description">
+                </mat-form-field>
+            </mat-toolbar-row>
+
+            <button mat-raised-button color="primary">Add</button>
+        </mat-card>
+    </form>
 </div>

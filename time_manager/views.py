@@ -10,13 +10,12 @@ from time_manager.serializers import TaskSerializer, ProjectSerializer, UserSeri
 
 logger = logging.getLogger(__name__)
 
+
 def index(request):
     return HttpResponse("Hello world")
 
 
 class ProjectList(APIView):
-
-    #permission_classes = (AllowAny,)
 
     def get_queryset(self, request):
         project = Project.objects.get(pk=self.request.id)
