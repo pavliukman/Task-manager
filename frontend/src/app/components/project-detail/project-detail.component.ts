@@ -17,7 +17,7 @@ import 'rxjs/add/operator/first';
 })
 export class ProjectDetailComponent implements OnInit {
     project: Project;
-    displayedColumns = ['name', 'description', 'status', 'estimated_time', 'action'];
+    displayedColumns = ['name', 'description', 'status', 'estimatedTime', 'action'];
 
     constructor(private route: ActivatedRoute,
         private projectService: ProjectService,

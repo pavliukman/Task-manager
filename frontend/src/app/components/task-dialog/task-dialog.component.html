@@ -12,8 +12,7 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width">
-        <input matInput type="number" [(ngModel)]="task.estimated_time" #estimated_time="ngModel" name="estimated_time" required
-            placeholder="Estimated time">
+        <input matInput type="number" [(ngModel)]="task.estimatedTime" #estimatedTime="ngModel" name="estimatedTime" required placeholder="Estimated time">
     </mat-form-field>
     <mat-form-field class="full-width">
         <textarea matInput name="description" [(ngModel)]="task.description" #description="ngModel" required placeholder="Description"
