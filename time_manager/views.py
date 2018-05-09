@@ -1,15 +1,14 @@
 from django.http import HttpResponse, Http404
+from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-
 import logging
 
 from time_manager.models import Task, Project
 from time_manager.serializers import TaskSerializer, ProjectSerializer, UserSerializer
 
-logger = logging.getLogger(__name__)
-
+logger = logging.getLogger('123')
 
 def index(request):
     return HttpResponse("Hello world")
@@ -24,7 +23,8 @@ class ProjectList(APIView):
         return response
 
     def get(self, request):
-        projects = Project.objects.all()
+        user_id = self.request.user
+        projects = Project.objects.filter(assignedTo__in=[user_id])
         serializer = ProjectSerializer(projects, many=True)
         response = Response(serializer.data)
         return response
@@ -86,6 +86,13 @@ class TaskList(APIView):
         task = self.get_task(pk)
         task.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UsersList(APIView):
+    def get(self, request):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
 
 
 # send user data with token

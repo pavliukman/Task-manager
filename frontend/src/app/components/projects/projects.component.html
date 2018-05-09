@@ -27,21 +27,32 @@
     </mat-table>
 </mat-card>
 <div class="new-project-toolbar">
-    <form (ngSubmit)="add()" #projectForm="ngForm">
+    <form (submit)="add(projectForm)" #projectForm="ngForm">
         <mat-card>
-            <mat-toolbar-row>
+            <mat-toolbar-row class="full-width">
                 <h4>Add new project</h4>
             </mat-toolbar-row>
             <mat-toolbar-row>
-                <mat-form-field>
+                <mat-form-field class="full-width">
                     <input [(ngModel)]="project.name" name="name" #name="ngModel" required matInput placeholder="Name">
                 </mat-form-field>
             </mat-toolbar-row>
             <mat-toolbar-row>
-                <mat-form-field>
+                <mat-form-field class="full-width">
                     <input [(ngModel)]="project.description" name="description" #description="ngModel" required matInput placeholder="Description">
                 </mat-form-field>
             </mat-toolbar-row>
+            <mat-form-field class="full-width">
+                <mat-select [(ngModel)]="project.assignedTo" placeholder="Who can edit?" name="assginTo" #assignTo="ngModel" required multiple>
+                    <mat-option *ngFor="let user of users" [value]="user.id">{{user.username}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-select [(ngModel)]="project.canEdit" placeholder="Who can administrate?" name="canEdit" #canEdit="ngModel" required
+                    multiple>
+                    <mat-option *ngFor="let user of users" [value]="user.id">{{user.username}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <button mat-raised-button color="primary">Add</button>
         </mat-card>

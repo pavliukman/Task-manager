@@ -2,7 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-projects',
@@ -11,15 +13,18 @@ import { FormGroup } from '@angular/forms';
 })
 export class ProjectsComponent implements OnInit {
     project = new Project();
+    users: User[];
     projects: Project[];
     displayedColumns = ['name', 'description', 'action'];
     projectForm: FormGroup;
 
     constructor(private projectService: ProjectService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute,
+        private userService: UserService) { }
 
     ngOnInit() {
         this.getProjects();
+        this.getUsers();
     }
 
     getProjects(): void {
@@ -29,15 +34,21 @@ export class ProjectsComponent implements OnInit {
             );
     }
 
+    getUsers(): void {
+        this.userService.getUsers().subscribe(users =>
+            this.users = users
+        );
+    }
+
     // add new project
-    add(): void {
+    add(form: NgForm): void {
         if (!this.project.name) {
             return;
         }
         this.projectService.addProject(this.project).subscribe(project => {
             this.getProjects();
-            this.project.name = '';
-            this.project.description = '';
+            this.getUsers();
+            form.resetForm()
         });
     }
 

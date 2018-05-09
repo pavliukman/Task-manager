@@ -13,16 +13,11 @@ class Role(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=60)
     description = models.TextField(default='', blank=True)
+    assignedTo = models.ManyToManyField(User, 'assignedTo')
+    canEdit = models.ManyToManyField(User, 'canEdit')
 
     def __str__(self):
         return self.name
-
-
-class Member(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.ForeignKey(Role, related_name='roles',
-                             on_delete=models.DO_NOTHING)
-    assigned_projects = models.ManyToManyField(Project)
 
 
 class Task(models.Model):
@@ -50,7 +45,7 @@ class Task(models.Model):
     )
     project = models.ForeignKey(
         Project, related_name='tasks', on_delete=models.CASCADE)
-    estimated_time = models.DecimalField(
+    estimatedTime = models.DecimalField(
         max_digits=5, decimal_places=2, default=0)
 
     # task estimations
