@@ -1,10 +1,43 @@
-<div id="menu">
-    <div id="avatar">
-        <img src="https://pickaface.net/assets/images/slides/slide2.png" alt="">
-    </div>
-    <span class="user-name">{{userName}}</span>
-    <a routerLink="/profile/dashboard">Dashboard</a>
-    <a routerLink="/profile/user/{{id}}">Profile</a>
-    <a routerLink="/profile/projects">Projects</a>
-    <a (click)="logout()">Logout</a>
-</div>
+<mat-sidenav-container (swiperight)="sidenavOpen()" class="example-container">
+	<mat-sidenav #sidenav [ngClass]="menuCollapse ? 'menu' : 'menu-toogle'">
+		<span class="user-name">{{userName}}</span>
+		<div class="menu-items">
+			<i class="material-icons md-light">dashboard</i>
+			<a routerLink="/profile/dashboard" (click)="close()">
+				Dashboard
+			</a>
+		</div>
+		<div class="menu-items" routerLink="/profile/user/{{id}}">
+			<i class="material-icons md-light">person</i>
+			<a (click)="close()">
+				Profile
+			</a>
+		</div>
+		<div class="menu-items">
+			<i class="material-icons md-light">assignment</i>
+			<a routerLink="/profile/projects" (click)="close()">
+				Projects
+			</a>
+		</div>
+		<div class="menu-items">
+			<i class="material-icons md-light">exit_to_app</i>
+			<a (click)="logout()" (click)="close()">
+				Logout
+			</a>
+		</div>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<mat-button-toggle value="justify" (click)="sidenav.open()" class="mobile-only">
+			<mat-icon>format_align_justify</mat-icon>
+		</mat-button-toggle>
+		<div class="container flexbox-col">
+			<mat-toolbar>
+				<mat-toolbar-row>
+					<mat-icon (click)="sidenav.open()">format_align_justify</mat-icon>
+					<span>{{toolbarTitle}}</span>
+				</mat-toolbar-row>
+			</mat-toolbar>
+			<router-outlet></router-outlet>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>

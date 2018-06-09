@@ -1,35 +1,79 @@
-#menu {
+.menu {
     height: 100vh;
     background: #222;
     flex: 1;
-}
-
-#menu #avatar img {
-    height: 45%;
-    width: 45%;
-    margin: 0 auto;
-    display: block;
-    border-radius: 50%;
+    width: 13%;
 }
 
 /* The navigation menu links */
-#menu a {
-    padding: 8px 8px 8px 32px;
+.menu a {
     text-decoration: none;
     font-size: 25px;
     color: #818181;
-    display: block;
+    display: inline-block;
     transition: 0.3s;
     cursor: pointer;
 }
 
-#menu a:hover {
+.menu i {    
+    vertical-align: middle;
+    padding-bottom: 8px;
+}
+
+.menu .menu-items {
+	padding: 2% 7%;
+}
+
+.menu .menu-items:hover {
     background: #3a3a3a;
 }
 
-#menu .user-name {
+.menu .user-name {
     color: white;
     display: block;
     text-align: center;
     padding-bottom: 30px;
 }
+
+.menu-toogle {
+    height: 100vh;
+    background: #222;
+    flex: 1;
+}
+
+/* The navigation menu links */
+.menu-toogle a {
+    display: none;
+}
+
+.menu-toogle a i {
+    display: inline; 
+    vertical-align: middle;
+    padding-bottom: 3px;
+}
+
+.menu-toogle a:hover {
+    background: #3a3a3a;
+}
+
+.menu-toogle .user-name {
+    color: white;
+    display: block;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  @media only screen and (min-width: 600px) {
+      .mobile-only {
+          display: none;
+      }
+  }
+  

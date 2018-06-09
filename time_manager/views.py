@@ -24,7 +24,7 @@ class ProjectList(APIView):
 
     def get(self, request):
         user_id = self.request.user
-        projects = Project.objects.filter(assignedTo__in=[user_id])
+        projects = Project.objects.filter(assigned_to__in=[user_id])
         serializer = ProjectSerializer(projects, many=True)
         response = Response(serializer.data)
         return response

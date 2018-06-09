@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule, MatTableModule, MatGridListModule } from '@angular/material';
+import { MatDialogModule, MatTableModule, MatGridListModule, MatSidenavModule, MatButtonToggleModule, MatIconModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -35,47 +35,50 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        ProjectsComponent,
-        ProfileComponent,
-        LoginComponent,
-        RegisterComponent,
-        MenuComponent,
-        DashboardComponent,
-        ProjectDetailComponent,
-        TaskDialogComponent,
-        ProfileDetailComponent
-    ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        AppRoutingModule,
-        MatDialogModule,
-        BrowserAnimationsModule,
-        MatTableModule,
-        MaterialModule,
-        MatGridListModule,
-        MatInputModule,
-        MatToolbarModule,
-        MatCardModule,
-        MatDividerModule,
-        MatListModule,
-        MatSelectModule
-    ],
-    providers: [
-        ProjectService,
-        UserService,
-        AuthService,
-        AuthGuard,
-        DataService,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: InterceptorService,
-            multi: true
-        }],
-    bootstrap: [AppComponent],
-    entryComponents: [TaskDialogComponent]
+	declarations: [
+		AppComponent,
+		ProjectsComponent,
+		ProfileComponent,
+		LoginComponent,
+		RegisterComponent,
+		MenuComponent,
+		DashboardComponent,
+		ProjectDetailComponent,
+		TaskDialogComponent,
+		ProfileDetailComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		FormsModule,
+		AppRoutingModule,
+		MatDialogModule,
+		BrowserAnimationsModule,
+		MatTableModule,
+		MaterialModule,
+		MatGridListModule,
+		MatInputModule,
+		MatToolbarModule,
+		MatCardModule,
+		MatDividerModule,
+		MatListModule,
+		MatSelectModule,
+		MatSidenavModule,
+		MatButtonToggleModule,
+		MatIconModule
+	],
+	providers: [
+		ProjectService,
+		UserService,
+		AuthService,
+		AuthGuard,
+		DataService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: InterceptorService,
+			multi: true
+		}],
+	bootstrap: [AppComponent],
+	entryComponents: [TaskDialogComponent]
 })
 export class AppModule { }

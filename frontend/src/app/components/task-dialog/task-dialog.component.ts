@@ -20,7 +20,7 @@ export class TaskDialogComponent implements OnInit {
 
         private projectService: ProjectService) { }
 
-    private statuses = ['In Progress', 'New', 'In Testing', 'Solved'];
+    public statuses = ['In Progress', 'New', 'In Testing', 'Solved'];
 
     ngOnInit() { }
 

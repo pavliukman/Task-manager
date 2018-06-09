@@ -6,22 +6,26 @@ import { DataService } from './services/data.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { UserService } from './services/user.service';
 
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-    user: User;
-    isUserLoggedIn: boolean;
+	user: User;
+	isUserLoggedIn: boolean;
 
-    constructor(public auth: AuthService,
-        public data: DataService,
-        public userService: UserService) { }
+	constructor(public auth: AuthService,
+		public data: DataService,
+		public userService: UserService) { }
 
-    ngOnInit() { }
+	ngOnInit() { }
 
-    logout() {
-        this.auth.logout();
-    }
+	logout() {
+		this.auth.logout();
+	}
 }

@@ -1,34 +1,37 @@
-<h2>{{project?.name}}</h2>
-<h4>{{project?.description}}</h4>
-<mat-table #table [dataSource]="project?.tasks">
-    <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef>Name:</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
-    </ng-container>
+<mat-card>
+	<mat-card-header>
+		<mat-card-title>{{project?.description}}</mat-card-title>
+	</mat-card-header>
+	<mat-table #table [dataSource]="project?.tasks">
+		<ng-container matColumnDef="name">
+			<mat-header-cell *matHeaderCellDef>Name:</mat-header-cell>
+			<mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+		</ng-container>
 
-    <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef>Description:</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
-    </ng-container>
+		<ng-container matColumnDef="description">
+			<mat-header-cell *matHeaderCellDef>Description:</mat-header-cell>
+			<mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+		</ng-container>
 
-    <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef>Status:</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
-    </ng-container>
+		<ng-container matColumnDef="status">
+			<mat-header-cell *matHeaderCellDef>Status:</mat-header-cell>
+			<mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+		</ng-container>
 
-    <ng-container matColumnDef="estimatedTime">
-        <mat-header-cell *matHeaderCellDef>Estimated time:</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.estimatedTime }}</mat-cell>
-    </ng-container>
+		<ng-container matColumnDef="estimatedTime">
+			<mat-header-cell *matHeaderCellDef>Estimated time:</mat-header-cell>
+			<mat-cell *matCellDef="let element">{{ element.estimatedTime }}</mat-cell>
+		</ng-container>
 
-    <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef>Action:</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            <span class="delete-task-span" (click)="deleteTask(element.id)">&#10006;</span>
-        </mat-cell>
-    </ng-container>
+		<ng-container matColumnDef="action">
+			<mat-header-cell *matHeaderCellDef>Action:</mat-header-cell>
+			<mat-cell *matCellDef="let element">
+				<span class="delete-task-span" (click)="deleteTask(element.id)">&#10006;</span>
+			</mat-cell>
+		</ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
-<button (click)="taskDialog()" mat-raised-button color="primary" class="add-task-button">Add task</button>
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	</mat-table>
+	<button (click)="taskDialog()" mat-raised-button color="primary" class="add-task-button">Add task</button>
+</mat-card>

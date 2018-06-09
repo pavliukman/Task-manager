@@ -11,61 +11,60 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
 
 @Component({
-    selector: 'app-project-detail',
-    templateUrl: './project-detail.component.html',
-    styleUrls: ['./project-detail.component.css']
+	selector: 'app-project-detail',
+	templateUrl: './project-detail.component.html',
+	styleUrls: ['./project-detail.component.css']
 })
 export class ProjectDetailComponent implements OnInit {
-    project: Project;
-    displayedColumns = ['name', 'description', 'status', 'estimatedTime', 'action'];
+	project: Project;
+	displayedColumns = ['name', 'description', 'status', 'estimatedTime', 'action'];
 
-    constructor(private route: ActivatedRoute,
-        private projectService: ProjectService,
-        public dialog: MatDialog) { }
+	constructor(private route: ActivatedRoute,
+		private projectService: ProjectService,
+		public dialog: MatDialog) { }
 
 
-    ngOnInit() {
-        // Project initialization
-        this.getProject();
-    }
+	ngOnInit() {
+		// Project initialization
+		this.getProject();
+	}
 
     /**
      * Retrieve projects
      */
-    getProject() {
-        let tasks;
-        const id = this.route.snapshot.paramMap.get('id');
-        this.projectService.getProject(id).subscribe(data => {
-            this.project = data;
-        });
-    }
+	getProject() {
+		let tasks;
+		const id = this.route.snapshot.paramMap.get('id');
+		this.projectService.getProject(id).subscribe(data => {
+			this.project = data;
+		});
+	}
 
     /**
      * Opens add task dialog
      */
-    taskDialog() {
-        let dialog = this.dialog.open(TaskDialogComponent, {
-            width: '50%',
-            data: {
-                projectId: this.project.id
-            }
-        });
+	taskDialog() {
+		let dialog = this.dialog.open(TaskDialogComponent, {
+			data: {
+				projectId: this.project.id
+			}
+		});
 
-        dialog.afterClosed().subscribe(result => {
-            this.getProject();
-        });
-    }
+		dialog.afterClosed().subscribe(result => {
+			this.getProject();
+		});
+	}
 
     /**
      * Delete task by id
      * @param id
      */
-    deleteTask(id: number) {
-        let confirmation = confirm('Are you sure?');
-        if (confirmation) {
-            this.projectService.deleteTask(id).subscribe(data => {
-                this.getProject();
-            });
-        }
-    }
+	deleteTask(id: number) {
+		let confirmation = confirm('Are you sure?');
+		if (confirmation) {
+			this.projectService.deleteTask(id).subscribe(data => {
+				this.getProject();
+			});
+		}
+	}
 }

@@ -13,8 +13,8 @@ class Role(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=60)
     description = models.TextField(default='', blank=True)
-    assignedTo = models.ManyToManyField(User, 'assignedTo')
-    canEdit = models.ManyToManyField(User, 'canEdit')
+    assigned_to = models.ManyToManyField(User, 'assigned_to')
+    can_edit = models.ManyToManyField(User, 'can_edit')
 
     def __str__(self):
         return self.name
