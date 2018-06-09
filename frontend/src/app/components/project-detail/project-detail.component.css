@@ -1,6 +1,6 @@
 .add-task-button {
     margin-top: 15px;
 }
-.delete-task-span {
+.cursor-pointer {
     cursor: pointer;
 }
