@@ -43,10 +43,12 @@ export class ProjectDetailComponent implements OnInit {
     /**
      * Opens add task dialog
      */
-	taskDialog() {
+	taskDialog(id?, action?) {
 		let dialog = this.dialog.open(TaskDialogComponent, {
 			data: {
-				projectId: this.project.id
+				projectId: this.project.id,
+				action: action || '',
+				id: id || ''
 			}
 		});
 

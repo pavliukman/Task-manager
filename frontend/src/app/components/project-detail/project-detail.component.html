@@ -26,8 +26,8 @@
 		<ng-container matColumnDef="action">
 			<mat-header-cell *matHeaderCellDef>Action:</mat-header-cell>
 			<mat-cell *matCellDef="let element">
+				<mat-icon class="cursor-pointer" (click)="taskDialog(element.id, 'edit')">edit</mat-icon>
 				<mat-icon class="cursor-pointer" (click)="deleteTask(element.id)">delete</mat-icon>
-				<mat-icon class="cursor-pointer" (click)="editTask(element.id)">edit</mat-icon>
 			</mat-cell>
 		</ng-container>
 

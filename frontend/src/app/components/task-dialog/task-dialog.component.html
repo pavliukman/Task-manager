@@ -1,4 +1,4 @@
-<form class="form container" (ngSubmit)="addTask()" #taskForm="ngForm">
+<form class="form container" (ngSubmit)="submit()" #taskForm="ngForm">
 	<h2 mat-dialog-title>New task</h2>
 	<mat-form-field class="full-width">
 		<input [(ngModel)]="task.name" name="name" #name="ngModel" required matInput placeholder="Name" class="full-width">

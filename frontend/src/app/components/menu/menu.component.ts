@@ -43,7 +43,6 @@ export class MenuComponent implements OnInit {
 			.mergeMap((route) => route.data)
 			.subscribe((data) => {
 				let title = data.title;
-				console.log(title);
 				this.titleService.setTitle(title);
 				this.toolbarTitle = title;
 			});
