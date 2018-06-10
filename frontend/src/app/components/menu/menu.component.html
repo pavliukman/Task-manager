@@ -1,4 +1,4 @@
-<mat-sidenav-container (swiperight)="sidenavOpen()" class="example-container">
+<mat-sidenav-container (swiperight)="sidenavOpen()" class="menu-container">
 	<mat-sidenav #sidenav [ngClass]="menuCollapse ? 'menu' : 'menu-toogle'">
 		<span class="user-name">{{userName}}</span>
 		<div class="menu-items">
@@ -27,14 +27,11 @@
 		</div>
 	</mat-sidenav>
 	<mat-sidenav-content>
-		<mat-button-toggle value="justify" (click)="sidenav.open()" class="mobile-only">
-			<mat-icon>format_align_justify</mat-icon>
-		</mat-button-toggle>
 		<div class="container flexbox-col">
 			<mat-toolbar>
 				<mat-toolbar-row>
-					<mat-icon (click)="sidenav.open()">format_align_justify</mat-icon>
-					<span>{{toolbarTitle}}</span>
+					<mat-icon class="menu-icon" (click)="sidenav.open()">format_align_justify</mat-icon>
+					<span id="toolbarTitle">{{toolbarTitle}}</span>
 				</mat-toolbar-row>
 			</mat-toolbar>
 			<router-outlet></router-outlet>

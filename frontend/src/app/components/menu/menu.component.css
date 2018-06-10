@@ -1,11 +1,23 @@
+.menu-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .menu {
     height: 100vh;
     background: #222;
     flex: 1;
-    width: 13%;
+}
+
+.menu-icon {
+    z-index: 99;
 }
 
 /* The navigation menu links */
+
 .menu a {
     text-decoration: none;
     font-size: 25px;
@@ -15,13 +27,13 @@
     cursor: pointer;
 }
 
-.menu i {    
+.menu i {
     vertical-align: middle;
     padding-bottom: 8px;
 }
 
 .menu .menu-items {
-	padding: 2% 7%;
+    padding: 2% 7%;
 }
 
 .menu .menu-items:hover {
@@ -42,12 +54,13 @@
 }
 
 /* The navigation menu links */
+
 .menu-toogle a {
     display: none;
 }
 
 .menu-toogle a i {
-    display: inline; 
+    display: inline;
     vertical-align: middle;
     padding-bottom: 3px;
 }
@@ -63,17 +76,17 @@
     padding-bottom: 30px;
 }
 
-.example-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  @media only screen and (min-width: 600px) {
-      .mobile-only {
-          display: none;
-      }
-  }
-  
+@media only screen and (max-width: 600px) {
+    .mobile-only {
+        display: none;
+    }
+    .menu {
+        min-width: 40%;
+    }
+    #toolbarTitle {
+        position: absolute;
+        left: 0%;
+        right: 0%;
+        text-align: center;
+    }
+}
