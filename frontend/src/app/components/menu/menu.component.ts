@@ -44,12 +44,8 @@ export class MenuComponent implements OnInit {
 			.subscribe((data) => {
 				let title = data.title;
 				this.titleService.setTitle(title);
-				this.toolbarTitle = title;
+				this.toolbarTitle = title || 'Task manager';
 			});
-	}
-
-	changeTitle(title) {
-		this.toolbarTitle = title;
 	}
 
 	collapseMenu() {

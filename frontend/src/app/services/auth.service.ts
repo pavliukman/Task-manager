@@ -36,19 +36,7 @@ export class AuthService {
         return this.http.post(this.data.API_URL_AUTH, user, httpOptions);
     }
 
-    isLoggedIn(): Promise<any> {
-        return this.http.post(this.data.API_URL_VERIFY, { token: this.getToken() }, httpOptions).toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+    isLoggedIn(): Observable<any> {
+        return this.http.post(this.data.API_URL_VERIFY, { token: this.getToken() }, httpOptions);
     };
-
-    private extractData(res: Response) {
-        let body = res;
-        return body || {};
-    }
-
-    private handleError(error: any): Promise<any> {
-        return Promise.reject(error.message || error);
-    }
-
 }

@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule, MatTableModule, MatGridListModule, MatSidenavModule, MatButtonToggleModule, MatIconModule } from '@angular/material';
+import { MatDialogModule, MatTableModule, MatGridListModule, MatSidenavModule, MatButtonToggleModule, MatIconModule, MatSnackBar, MatProgressBarModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -65,7 +66,9 @@ import { ProfileDetailComponent } from './components/profile-detail/profile-deta
 		MatSelectModule,
 		MatSidenavModule,
 		MatButtonToggleModule,
-		MatIconModule
+		MatIconModule,
+		MatSnackBarModule,
+		MatProgressBarModule
 	],
 	providers: [
 		ProjectService,

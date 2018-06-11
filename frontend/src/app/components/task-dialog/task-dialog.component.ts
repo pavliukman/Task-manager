@@ -14,6 +14,7 @@ import { EventEmitter } from 'events';
 export class TaskDialogComponent implements OnInit {
 	task = new Task();
 	taskFrom: FormGroup;
+	submitted: boolean = false;
 
 	constructor(private matDialogRef: MatDialogRef<TaskDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -29,11 +30,8 @@ export class TaskDialogComponent implements OnInit {
 		}
 	}
 
-	submitted = false;
-
 	submit() {
 		this.submitted = true;
-
 		let action = this.data.action;
 
 		// decide what to do with task, add or edit

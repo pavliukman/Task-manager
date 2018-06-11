@@ -24,7 +24,7 @@ const routes: Routes = [
 			{ path: 'user/:user-id', component: ProfileDetailComponent, canActivate: [AuthGuard] }
 		]
 	},
-	{ path: '', redirectTo: '/profile', pathMatch: 'full' }
+	{ path: '', redirectTo: '/profile/projects', pathMatch: 'full' }
 
 ];
 
