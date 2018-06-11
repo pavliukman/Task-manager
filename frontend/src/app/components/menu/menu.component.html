@@ -1,27 +1,25 @@
 <mat-sidenav-container (swiperight)="sidenavOpen()" class="menu-container">
 	<mat-sidenav #sidenav [ngClass]="menuCollapse ? 'menu' : 'menu-toogle'">
 		<span class="user-name">{{userName}}</span>
-		<div class="menu-items">
+		<!-- <div class="menu-items" routerLink="/profile/dashboard" (click)="close()">
 			<i class="material-icons md-light">dashboard</i>
-			<a routerLink="/profile/dashboard" (click)="close()">
+			<a>
 				Dashboard
 			</a>
-		</div>
-		<div class="menu-items" routerLink="/profile/user/{{id}}">
+		</div> -->
+		<div class="menu-items" routerLink="/profile/user/{{id}}" (click)="close()">
 			<i class="material-icons md-light">person</i>
-			<a (click)="close()">
+			<a>
 				Profile
 			</a>
 		</div>
-		<div class="menu-items">
+		<div class="menu-items" routerLink="/profile/projects" (click)="close()">
 			<i class="material-icons md-light">assignment</i>
-			<a routerLink="/profile/projects" (click)="close()">
-				Projects
-			</a>
+			<a>Projects</a>
 		</div>
-		<div class="menu-items">
+		<div class="menu-items" (click)="logout()" (click)="close()">
 			<i class="material-icons md-light">exit_to_app</i>
-			<a (click)="logout()" (click)="close()">
+			<a>
 				Logout
 			</a>
 		</div>

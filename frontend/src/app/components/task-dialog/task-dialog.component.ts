@@ -13,7 +13,6 @@ import { EventEmitter } from 'events';
 })
 export class TaskDialogComponent implements OnInit {
 	task = new Task();
-	taskFrom: FormGroup;
 	submitted: boolean = false;
 
 	constructor(private matDialogRef: MatDialogRef<TaskDialogComponent>,
@@ -40,7 +39,6 @@ export class TaskDialogComponent implements OnInit {
 		} else {
 			this.addTask();
 		}
-
 	}
 
 	/**
