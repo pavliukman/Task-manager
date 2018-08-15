@@ -18,6 +18,7 @@ import 'rxjs/add/operator/first';
 export class ProjectDetailComponent implements OnInit {
 	project: Project;
 	displayedColumns = ['name', 'description', 'status', 'estimatedTime', 'action'];
+	isLoading: boolean = true;
 
 	constructor(private route: ActivatedRoute,
 		private projectService: ProjectService,
@@ -27,6 +28,7 @@ export class ProjectDetailComponent implements OnInit {
 	ngOnInit() {
 		// Project initialization
 		this.getProject();
+		this.route.snapshot.data['title'] = 'this.project.name';
 	}
 
     /**
@@ -37,16 +39,19 @@ export class ProjectDetailComponent implements OnInit {
 		const id = this.route.snapshot.paramMap.get('id');
 		this.projectService.getProject(id).subscribe(data => {
 			this.project = data;
+			//this.isLoading = false;
 		});
 	}
 
     /**
      * Opens add task dialog
      */
-	taskDialog() {
+	taskDialog(id?, action?) {
 		let dialog = this.dialog.open(TaskDialogComponent, {
 			data: {
-				projectId: this.project.id
+				projectId: this.project.id,
+				action: action || '',
+				id: id || ''
 			}
 		});
 

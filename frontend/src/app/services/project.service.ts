@@ -23,20 +23,24 @@ export class ProjectService {
     private projectsUrl = this.data.API_URL + '/api/projects/';
     private projectUrl = this.data.API_URL + '/api/project/';
     private tasksUrl = this.data.API_URL + '/api/tasks/';
+    private taskUrl = this.data.API_URL + '/api/task/';
 
     getProjects(): Observable<Project[]> {
         return this.http.get<Project[]>(this.projectsUrl, httpOptions);
+    }
+
+    getProject(id): Observable<Project> {
+        return this.http.get<Project>(this.projectUrl + id + '/', httpOptions).pipe(
+            tap((project: Project) => this.project = project)
+        );;
     }
 
     getTasks(): Observable<Task[]> {
         return this.http.get<Task[]>(this.tasksUrl, httpOptions);
     }
 
-    getProject(id): Observable<Project> {
-        let getProjectUrl = this.data.API_URL + '/api/project/' + id + '/';
-        return this.http.get<Project>(getProjectUrl, httpOptions).pipe(
-            tap((project: Project) => this.project = project)
-        );;
+    getTask(id): Observable<Task> {
+        return this.http.get<Task>(this.taskUrl + id + '/', httpOptions);
     }
 
     addProject(project: Project) {
@@ -45,6 +49,10 @@ export class ProjectService {
 
     addTask(task: Task) {
         return this.http.post<Task>(this.tasksUrl, task, httpOptions);
+    }
+
+    editTask(task: Task, pk) {
+        return this.http.put<Task>(this.taskUrl + pk + '/', task, httpOptions);
     }
 
     deleteProject(pk) {

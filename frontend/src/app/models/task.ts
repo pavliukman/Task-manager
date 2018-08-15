@@ -7,4 +7,5 @@ export class Task {
 	estimatedTime: number;
 	assigned_to?: any;
 	can_edit?: any;
+	action: string;
 }

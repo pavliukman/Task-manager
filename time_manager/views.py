@@ -38,19 +38,14 @@ class ProjectList(APIView):
 
 
 class ProjectDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Project.objects.get(pk=pk)
-        except Project.DoesNotExist:
-            raise Http404
 
     def get(self, request, pk, format=None):
-        project = self.get_object(pk)
+        project = Project.objects.get(pk=pk)
         serializer = ProjectSerializer(project)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        project = self.get_object(pk)
+        project = Project.objects.get(pk=pk)
         serializer = ProjectSerializer(project, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -58,7 +53,7 @@ class ProjectDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        project = self.get_object(pk)
+        project = Project.objects.get(pk=pk)
         project.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -86,6 +81,22 @@ class TaskList(APIView):
         task = self.get_task(pk)
         task.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class TaskDetail(APIView):
+
+    def get(self, request, pk, format=None):
+        task = Task.objects.get(pk=pk)
+        serializer = TaskSerializer(task)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        task = Task.objects.get(pk=pk)
+        serializer = TaskSerializer(task, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UsersList(APIView):

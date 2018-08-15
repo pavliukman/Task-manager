@@ -1,3 +1,11 @@
 <mat-card>
-    <h2>Profile</h2>
+    <h2>
+        <div *ngIf="user.first_name;else userName">
+            {{user.first_name}} {{user.last_name}}, {{user.username}}
+        </div>
+        <ng-template #userName>
+            {{user.username}}
+        </ng-template>
+    </h2>
+    <p>{{user.email}}</p>
 </mat-card>

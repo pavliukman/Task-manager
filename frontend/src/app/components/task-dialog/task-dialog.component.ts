@@ -7,33 +7,59 @@ import { ProjectDetailComponent } from '../project-detail/project-detail.compone
 import { EventEmitter } from 'events';
 
 @Component({
-    selector: 'app-task-dialog',
-    templateUrl: './task-dialog.component.html',
-    styleUrls: ['./task-dialog.component.css']
+	selector: 'app-task-dialog',
+	templateUrl: './task-dialog.component.html',
+	styleUrls: ['./task-dialog.component.css']
 })
 export class TaskDialogComponent implements OnInit {
-    task = new Task();
-    taskFrom: FormGroup;
+	task = new Task();
+	submitted: boolean = false;
 
-    constructor(private matDialogRef: MatDialogRef<TaskDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
+	constructor(private matDialogRef: MatDialogRef<TaskDialogComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		private projectService: ProjectService) { }
 
-        private projectService: ProjectService) { }
+	public statuses = ['In Progress', 'New', 'In Testing', 'Solved'];
 
-    public statuses = ['In Progress', 'New', 'In Testing', 'Solved'];
+	ngOnInit() {
+		if (this.data.action) {
+			this.projectService.getTask(this.data.id).subscribe(task => {
+				this.task = task;
+			});
+		}
+	}
 
-    ngOnInit() { }
+	submit() {
+		this.submitted = true;
+		let action = this.data.action;
 
-    submitted = false;
+		// decide what to do with task, add or edit
+		if (action == 'edit') {
+			this.editTask();
+		} else {
+			this.addTask();
+		}
+	}
 
-    addTask() {
-        this.submitted = true;
-        if (!this.task.name) {
-            return;
-        }
-        this.task.project = this.data.projectId;
-        this.projectService.addTask(this.task).subscribe(task => {
-            this.matDialogRef.close();
-        });
-    }
+	/**
+	 * Adds task to project
+	 */
+	addTask() {
+		if (!this.task.name) {
+			return;
+		}
+		this.task.project = this.data.projectId;
+		this.projectService.addTask(this.task).subscribe(task => {
+			this.matDialogRef.close();
+		});
+	}
+
+	/**
+	 * Edits task in project
+	 */
+	editTask() {
+		this.projectService.editTask(this.task, this.data.id).subscribe(data => {
+			this.matDialogRef.close();
+		});
+	}
 }

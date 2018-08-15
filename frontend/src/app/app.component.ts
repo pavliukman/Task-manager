@@ -17,7 +17,6 @@ import 'rxjs/add/operator/mergeMap';
 })
 export class AppComponent {
 	user: User;
-	isUserLoggedIn: boolean;
 
 	constructor(public auth: AuthService,
 		public data: DataService,

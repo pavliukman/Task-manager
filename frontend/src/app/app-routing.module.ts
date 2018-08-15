@@ -20,11 +20,11 @@ const routes: Routes = [
 			{ path: '', component: ProjectsComponent, canActivate: [AuthGuard], data: { title: 'Main' } },
 			{ path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard], data: { title: 'Projects' } },
 			{ path: 'projects/:id', component: ProjectDetailComponent, canActivate: [AuthGuard] },
-			{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { title: 'Dashboard' } },
+			// { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { title: 'Dashboard' } },
 			{ path: 'user/:user-id', component: ProfileDetailComponent, canActivate: [AuthGuard] }
 		]
 	},
-	{ path: '', redirectTo: '/profile', pathMatch: 'full' }
+	{ path: '', redirectTo: '/profile/projects', pathMatch: 'full' }
 
 ];
 

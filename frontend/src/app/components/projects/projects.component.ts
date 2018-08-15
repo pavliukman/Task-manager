@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, NgForm } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
@@ -18,12 +18,13 @@ export class ProjectsComponent implements OnInit {
 	projects: Project[];
 	displayedColumns = ['name', 'description', 'action'];
 	projectForm: FormGroup;
-	@Output() voted = new EventEmitter<string>();
+	isLoading: boolean = true;
 
 	constructor(private projectService: ProjectService,
 		private route: ActivatedRoute,
 		private userService: UserService,
-		private titleService: Title
+		private titleService: Title,
+		private router: Router
 	) { }
 
 	ngOnInit() {
@@ -34,9 +35,10 @@ export class ProjectsComponent implements OnInit {
 
 	getProjects(): void {
 		this.projectService.getProjects()
-			.subscribe(projects =>
-				this.projects = projects
-			);
+			.subscribe(projects => {
+				this.projects = projects;
+				this.isLoading = false;
+			});
 	}
 
 	getUsers(): void {

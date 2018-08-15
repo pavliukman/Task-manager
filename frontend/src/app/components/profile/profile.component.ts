@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
-import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-profile',
@@ -8,8 +7,6 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-	profileTitle: string = 'ProfileComponent';
-	subscription: Subscription;
 
 	constructor() { }
 

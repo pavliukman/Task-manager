@@ -2,32 +2,45 @@
 	<mat-card-header>
 		<mat-card-title>{{project?.description}}</mat-card-title>
 	</mat-card-header>
-	<mat-table #table [dataSource]="project?.tasks">
+	<mat-table #table [dataSource]="project?.tasks" class="responsive_table">
 		<ng-container matColumnDef="name">
 			<mat-header-cell *matHeaderCellDef>Name:</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+			<mat-cell *matCellDef="let element">
+				<span class="mobile-label">Name:</span>
+				{{ element.name }}
+			</mat-cell>
 		</ng-container>
 
 		<ng-container matColumnDef="description">
 			<mat-header-cell *matHeaderCellDef>Description:</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.description }}</mat-cell>
+			<mat-cell *matCellDef="let element">
+				<span class="mobile-label">Description:</span>
+				{{ element.description }}
+			</mat-cell>
 		</ng-container>
 
 		<ng-container matColumnDef="status">
 			<mat-header-cell *matHeaderCellDef>Status:</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+			<mat-cell *matCellDef="let element">
+				<span class="mobile-label">Status:</span>
+				{{ element.status }}
+			</mat-cell>
 		</ng-container>
 
 		<ng-container matColumnDef="estimatedTime">
 			<mat-header-cell *matHeaderCellDef>Estimated time:</mat-header-cell>
-			<mat-cell *matCellDef="let element">{{ element.estimatedTime }}</mat-cell>
+			<mat-cell *matCellDef="let element">
+				<span class="mobile-label">Estimated time:</span>
+				{{ element.estimatedTime }}
+			</mat-cell>
 		</ng-container>
 
 		<ng-container matColumnDef="action">
 			<mat-header-cell *matHeaderCellDef>Action:</mat-header-cell>
 			<mat-cell *matCellDef="let element">
+				<span class="mobile-label">Action:</span>
+				<mat-icon class="cursor-pointer" (click)="taskDialog(element.id, 'edit')">edit</mat-icon>
 				<mat-icon class="cursor-pointer" (click)="deleteTask(element.id)">delete</mat-icon>
-				<mat-icon class="cursor-pointer" (click)="editTask(element.id)">edit</mat-icon>
 			</mat-cell>
 		</ng-container>
 
