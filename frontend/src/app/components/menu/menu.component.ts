@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
-import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
@@ -52,7 +51,7 @@ export class MenuComponent implements OnInit {
 		this.menuCollapse = !this.menuCollapse;
 	}
 
-	close() {
+	sidenavClose() {
 		this.sidenav.close();
 	}
 

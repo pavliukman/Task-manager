@@ -1,5 +1,5 @@
-<mat-sidenav-container (swiperight)="sidenavOpen()" class="menu-container">
-	<mat-sidenav #sidenav [ngClass]="menuCollapse ? 'menu' : 'menu-toogle'">
+<mat-sidenav-container (swiperight)="sidenavOpen()" (swipeleft)="sidenavClose()" class="menu-container">
+	<mat-sidenav #sidenav mode="side" [ngClass]="menuCollapse ? 'menu' : 'menu-toogle'">
 		<span class="user-name">{{userName}}</span>
 		<!-- <div class="menu-items" routerLink="/profile/dashboard" (click)="close()">
 			<i class="material-icons md-light">dashboard</i>
@@ -7,17 +7,17 @@
 				Dashboard
 			</a>
 		</div> -->
-		<div class="menu-items" routerLink="/profile/user/{{id}}" (click)="close()">
+		<div class="menu-items" routerLink="/profile/user/{{id}}" (click)="sidenavClose()">
 			<i class="material-icons md-light">person</i>
 			<a>
 				Profile
 			</a>
 		</div>
-		<div class="menu-items" routerLink="/profile/projects" (click)="close()">
+		<div class="menu-items" routerLink="/profile/projects" (click)="sidenavClose()">
 			<i class="material-icons md-light">assignment</i>
 			<a>Projects</a>
 		</div>
-		<div class="menu-items" (click)="logout()" (click)="close()">
+		<div class="menu-items" (click)="logout()" (click)="sidenavClose()">
 			<i class="material-icons md-light">exit_to_app</i>
 			<a>
 				Logout
@@ -28,7 +28,7 @@
 		<div class="container flexbox-col">
 			<mat-toolbar>
 				<mat-toolbar-row>
-					<mat-icon class="menu-icon" (click)="sidenav.open()">format_align_justify</mat-icon>
+					<mat-icon class="menu-icon" (click)="this.sidenav.opened ? sidenav.close() : sidenav.open()">format_align_justify</mat-icon>
 					<span id="toolbarTitle">{{toolbarTitle}}</span>
 				</mat-toolbar-row>
 			</mat-toolbar>

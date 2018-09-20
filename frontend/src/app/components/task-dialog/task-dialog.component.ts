@@ -1,10 +1,7 @@
-import { Component, OnInit, Inject, Input, Output } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Task } from '../../models/task';
 import { ProjectService } from '../../services/project.service';
-import { ProjectDetailComponent } from '../project-detail/project-detail.component';
-import { EventEmitter } from 'events';
 
 @Component({
 	selector: 'app-task-dialog',
