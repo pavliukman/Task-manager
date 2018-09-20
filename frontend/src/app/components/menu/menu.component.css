@@ -1,92 +1,73 @@
-.menu-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+/* The side navigation menu */
+
+.sidenav {
+	height: 100%;
+	position: fixed;
+	/* Stay in place */
+	z-index: 1;
+	/* Stay on top */
+	top: 0;
+	/* Stay at the top */
+	left: 0;
+	background-color: #111;
+	/* Black*/
+	overflow-x: hidden;
+	/* Disable horizontal scroll */
+	padding-top: 60px;
+	/* Place content 60px from the top */
+	transition: width 2s;
+	-webkit-transition: width 2s; 
 }
 
-.menu {
-    height: 100vh;
-    background: #222;
-    flex: 1;
+.sidenav:hover {
+	width: 250px;
 }
 
-.menu-icon {
-    z-index: 99;
+.sidenav:hover .menu-items a {
+	display: inline-block;
 }
 
-/* The navigation menu links */
-
-.menu a {
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: inline-block;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.menu i {
-    vertical-align: middle;
-    padding-bottom: 8px;
-}
-
-.menu .menu-items {
-    padding: 2% 7%;
-}
-
-.menu .menu-items:hover {
-    background: #3a3a3a;
-}
-
-.menu .user-name {
-    color: white;
-    display: block;
-    text-align: center;
-    padding-bottom: 30px;
-}
-
-.menu-toogle {
-    height: 100vh;
-    background: #222;
-    flex: 1;
+.sidenav .menu-items .material-icons {
+	font-size: 45px;
 }
 
 /* The navigation menu links */
 
-.menu-toogle a {
-    display: none;
+.sidenav a {
+	padding: 8px 8px 8px 32px;
+	font-size: 25px;
+	color: #818181;
+	display: none;
+	vertical-align: bottom;
 }
 
-.menu-toogle a i {
-    display: inline;
-    vertical-align: middle;
-    padding-bottom: 3px;
+/* When you mouse over the navigation links, change their color */
+
+.sidenav a:hover {
+	color: #f1f1f1;
 }
 
-.menu-toogle a:hover {
-    background: #3a3a3a;
+/* Position and style the close button (top right corner) */
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
 }
 
-.menu-toogle .user-name {
-    color: white;
-    display: block;
-    text-align: center;
-    padding-bottom: 30px;
+.menu-items:hover {
+	background: #333333;
 }
 
-@media only screen and (max-width: 600px) {
-    .mobile-only {
-        display: none;
-    }
-    .menu {
-        min-width: 40%;
-    }
-    #toolbarTitle {
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        text-align: center;
-    }
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
 }

@@ -34,6 +34,7 @@ import { DataService } from './services/data.service';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { ProfileDetailComponent } from './components/profile-detail/profile-deta
 		DashboardComponent,
 		ProjectDetailComponent,
 		TaskDialogComponent,
-		ProfileDetailComponent
+		ProfileDetailComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,
