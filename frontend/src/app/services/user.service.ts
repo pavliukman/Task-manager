@@ -27,7 +27,7 @@ export class UserService {
     /**
      * Returns users list
      */
-    getUsers(): Observable<User[]> {
+    getUsers(project?): Observable<User[]> {
         let url = this.data.API_URL + '/api/users';
         return this.http.get<User[]>(url, httpOptions);
     }

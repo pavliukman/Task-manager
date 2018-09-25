@@ -43,6 +43,8 @@ class Task(models.Model):
         choices=STATUSES,
         default=NEW,
     )
+    assigned_to = models.ForeignKey(
+        User, related_name='assignee', on_delete=models.CASCADE)
     project = models.ForeignKey(
         Project, related_name='tasks', on_delete=models.CASCADE)
     estimatedTime = models.DecimalField(

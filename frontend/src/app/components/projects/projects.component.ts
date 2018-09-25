@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, NgForm } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
@@ -21,10 +20,8 @@ export class ProjectsComponent implements OnInit {
 	isLoading: boolean = true;
 
 	constructor(private projectService: ProjectService,
-		private route: ActivatedRoute,
 		private userService: UserService,
-		private titleService: Title,
-		private router: Router
+		private titleService: Title
 	) { }
 
 	ngOnInit() {

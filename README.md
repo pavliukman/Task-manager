@@ -10,3 +10,7 @@
 
 ###### Database
 - create database task_manager;
+
+##### Django
+###### Creating superuser
+- python manage.py createsuperuser
