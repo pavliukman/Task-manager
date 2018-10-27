@@ -1,10 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
-import { AppComponent } from '../../app.component';
-import { DataService } from '../../services/data.service';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -18,8 +16,6 @@ export class LoginComponent implements OnInit {
 
 	constructor(private auth: AuthService,
 		private router: Router,
-		private app: AppComponent,
-		private route: ActivatedRoute,
 		public snackBar: MatSnackBar) { }
 
 	ngOnInit() {

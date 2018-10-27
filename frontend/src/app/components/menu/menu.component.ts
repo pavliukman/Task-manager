@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { filter } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-menu',

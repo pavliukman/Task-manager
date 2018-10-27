@@ -1,13 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
+import { MatDialog } from "@angular/material";
 
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../models/project';
 import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
-import { Task } from '../../models/task';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
 
 @Component({
@@ -31,11 +28,10 @@ export class ProjectDetailComponent implements OnInit {
 		this.route.snapshot.data['title'] = 'this.project.name';
 	}
 
-    /**
-     * Retrieve projects
-     */
+  /**
+   * Retrieve projects
+   */
 	getProject() {
-		let tasks;
 		const id = this.route.snapshot.paramMap.get('id');
 		this.projectService.getProject(id).subscribe(data => {
 			this.project = data;
@@ -43,9 +39,9 @@ export class ProjectDetailComponent implements OnInit {
 		});
 	}
 
-    /**
-     * Opens add task dialog
-     */
+  /**
+   * Opens add task dialog
+   */
 	taskDialog(id?, action?) {
 		let dialog = this.dialog.open(TaskDialogComponent, {
 			data: {
@@ -60,10 +56,10 @@ export class ProjectDetailComponent implements OnInit {
 		});
 	}
 
-    /**
-     * Delete task by id
-     * @param id
-     */
+  /**
+   * Delete task by id
+   * @param id
+   */
 	deleteTask(id: number) {
 		let confirmation = confirm('Are you sure?');
 		if (confirmation) {
