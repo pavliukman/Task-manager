@@ -1,31 +1,31 @@
 <form class="form container" [formGroup]="taskForm" (ngSubmit)="submit(taskForm.value)">
-    <h2 mat-dialog-title>New task</h2>
-    <mat-form-field class="full-width">
-        <input formControlName="name" required matInput placeholder="Name" class="full-width">
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <mat-select formControlName="status" placeholder="Status" required>
-            <mat-option *ngFor="let status of statuses" [value]="status">
-                {{status}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input type="text" formControlName="assigned_to" placeholder="Assignee" matInput [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let assignee of filteredOptions | async" [value]="assignee">
-                {{assigneeToString(assignee.id)}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput type="number" formControlName="estimatedTime" name="estimatedTime" required placeholder="Estimated time">
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <textarea matInput name="description" formControlName="description" required placeholder="Description" rows="8"></textarea>
-    </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">
-        Submit
-    </button>
-    <button mat-raised-button matDialogClose>Cancel</button>
+	<h2 mat-dialog-title>New task</h2>
+	<mat-form-field class="full-width">
+		<input formControlName="name" required matInput placeholder="Name" class="full-width">
+	</mat-form-field>
+	<mat-form-field class="full-width">
+		<mat-select formControlName="status" placeholder="Status" required>
+			<mat-option *ngFor="let status of statuses" [value]="status">
+				{{status}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<mat-form-field class="full-width">
+		<input type="text" formControlName="assigned_to" placeholder="Assignee" matInput [matAutocomplete]="auto">
+		<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+			<mat-option *ngFor="let assignee of filteredOptions | async" [value]="assignee">
+				{{assigneeToString(assignee.id)}}
+			</mat-option>
+		</mat-autocomplete>
+	</mat-form-field>
+	<mat-form-field class="full-width">
+		<input matInput type="number" formControlName="estimatedTime" name="estimatedTime" required placeholder="Estimated time">
+	</mat-form-field>
+	<mat-form-field class="full-width">
+		<textarea matInput name="description" formControlName="description" required placeholder="Description" rows="8"></textarea>
+	</mat-form-field>
+	<button type="submit" mat-raised-button color="primary">
+		Submit
+	</button>
+	<button mat-raised-button matDialogClose>Cancel</button>
 </form>

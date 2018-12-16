@@ -1,11 +1,11 @@
 import { Task } from "./task";
 
 export class Project {
-	id: number;
-	nickname: string;
+	id: any;
 	name: string;
 	description: string;
-	assigned_to: any;
+	assigned_to: number[];
+	assigned_to_users_object: any;
 	can_edit: any;
 	tasks: Task[];
 }

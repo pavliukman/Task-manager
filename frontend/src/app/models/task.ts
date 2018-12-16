@@ -8,4 +8,5 @@ export class Task {
 	assigned_to?: any;
 	can_edit?: any;
 	action: string;
+	assigned_to_user: any;
 }

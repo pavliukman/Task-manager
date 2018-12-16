@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatAutocomplete } from '@angular/material';
 import { Task } from '../../models/task';
 import { ProjectService } from '../../services/project.service';
 import { UserService } from '../../services/user.service';
@@ -43,12 +43,10 @@ export class TaskDialogComponent implements OnInit {
 				this.taskForm.patchValue({
 					name: task.name,
 					status: task.status,
-					assigned_to: this.task.assigned_to,
+					assigned_to: this.task.assigned_to_user,
 					estimatedTime: task.estimatedTime,
 					description: task.description,
 				});
-				let assignedToFormControl = this.taskForm.get('assigned_to') as FormGroup;
-				assignedToFormControl.setValue(this.assignees.find(user => user.id === this.task.assigned_to));
 			});
 		}
 	}

@@ -1,0 +1,57 @@
+<form (ngSubmit)="submit(projectForm.value)" [formGroup]="projectForm">
+	<mat-tab-group class="tab-wrapper" dynamicHeight>
+		<mat-tab label="Main">
+			<mat-toolbar-row class="full-width">
+				<h4>Edit {{project.name}}</h4>
+			</mat-toolbar-row>
+			<mat-toolbar-row>
+				<mat-form-field class="full-width">
+					<input formControlName="name" matInput required placeholder="Name">
+				</mat-form-field>
+			</mat-toolbar-row>
+			<mat-toolbar-row>
+				<mat-form-field class="full-width">
+					<input formControlName="description" matInput required placeholder="Description">
+				</mat-form-field>
+			</mat-toolbar-row>
+			<button type="submit" mat-raised-button color="primary">Save</button>
+			<button type="reset" (click)="backClicked()" mat-raised-button>Cancel</button>
+		</mat-tab>
+		<mat-tab label="Assigned users">
+			<div class="wrapper">
+				<mat-list class="users-list">
+					<mat-list-item *ngFor="let assignee of project.assigned_to_users_object">
+						{{userToString(assignee)}}
+						<mat-icon class="cursor-pointer-span" (click)="removeUser(assignee.id)">delete</mat-icon>
+						<mat-divider></mat-divider>
+					</mat-list-item>
+				</mat-list>
+				<div class="search">
+					<mat-form-field class="search-box-input">
+						<input type="text" formControlName="assigned_to" placeholder="Assign new" matInput (keyup)="searchUsers($event)">
+					</mat-form-field>
+					<div *ngIf="displaySearchBox" class="search-box">
+						<div *ngIf="users">
+							<div *ngFor="let s of users" class="search-results" (click)='selectValue(s)'>
+								{{userToString(s)}}
+							</div>
+						</div>
+						<div class="no-result" *ngIf="displayNoResults">
+							No search result
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-tab>
+		<!-- <mat-tab label="Administrators">
+			<mat-list>
+				<mat-list-item *ngFor="let assignee of project.can_edit">{{displayFn(assignee)}}</mat-list-item>
+			</mat-list>
+			<mat-form-field class="full-width">
+				<mat-select [(ngModel)]="project.can_edit" placeholder="Who can administrate?" name="can_edit" #can_edit="ngModel" required multiple>
+					<mat-option *ngFor="let user of users" [value]="user.id">{{user.username}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-tab> -->
+	</mat-tab-group>
+</form>

@@ -2,7 +2,8 @@ from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework import status, filters
+from django.db.models import Q
 import logging
 
 from time_manager.models import Task, Project
@@ -19,15 +20,13 @@ class ProjectList(APIView):
     def get_queryset(self, request):
         project = Project.objects.get(pk=self.request.id)
         serializer = ProjectSerializer(project, many=False)
-        response = Response(serializer.data)
-        return response
+        return Response(serializer.data)
 
     def get(self, request):
         user_id = self.request.user
         projects = Project.objects.filter(assigned_to__in=[user_id])
         serializer = ProjectSerializer(projects, many=True)
-        response = Response(serializer.data)
-        return response
+        return Response(serializer.data)
 
     def post(self, request):
         serializer = ProjectSerializer(data=request.data)
@@ -43,6 +42,15 @@ class ProjectDetail(APIView):
         project = Project.objects.get(pk=pk)
         serializer = ProjectSerializer(project)
         return Response(serializer.data)
+
+    def patch(self, request, pk, format=None):
+        project = Project.objects.get(pk=pk)
+
+        serializer = ProjectSerializer(project, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk, format=None):
         project = Project.objects.get(pk=pk)
@@ -101,7 +109,16 @@ class TaskDetail(APIView):
 
 class UsersList(APIView):
     def get(self, request):
-        users = User.objects.all()
+        search = self.request.query_params.get('search', None)
+        exclude = self.request.query_params.get('exclude', None)
+        if search:
+            params = []
+            for user_id in exclude.split('|'):
+                params.append(int(user_id))
+            users = User.objects.filter(
+                Q(username__startswith=search) | Q(email__startswith=search) | Q(first_name__startswith=search) | Q(last_name__startswith=search)).exclude(id__in=params)
+        else:
+            users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 

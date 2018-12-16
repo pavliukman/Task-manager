@@ -3,7 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule, MatTableModule, MatGridListModule, MatSidenavModule, MatButtonToggleModule, MatIconModule, MatProgressBarModule, MatAutocompleteModule } from '@angular/material';
+import { MatDialogModule, MatTableModule, MatGridListModule, MatSidenavModule, MatButtonToggleModule, MatIconModule, MatProgressBarModule, MatAutocompleteModule, MatTabsModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -34,6 +34,7 @@ import { DataService } from './services/data.service';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
+import { ProjectEditComponent } from './components/project-edit/project-edit.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { ProfileDetailComponent } from './components/profile-detail/profile-deta
 		DashboardComponent,
 		ProjectDetailComponent,
 		TaskDialogComponent,
-		ProfileDetailComponent
+		ProfileDetailComponent,
+		ProjectEditComponent
 	],
 	imports: [
 		BrowserModule,
@@ -70,7 +72,8 @@ import { ProfileDetailComponent } from './components/profile-detail/profile-deta
 		MatSnackBarModule,
 		MatProgressBarModule,
 		MatAutocompleteModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		MatTabsModule
 	],
 	providers: [
 		ProjectService,

@@ -18,7 +18,8 @@
 		<ng-container matColumnDef="action">
 			<mat-header-cell *matHeaderCellDef>Action:</mat-header-cell>
 			<mat-cell *matCellDef="let element">
-				<span class="cursor-pointer-span" (click)="delete(element.id)">&#10006;</span>
+				<mat-icon routerLink="{{element.id}}/edit" class="cursor-pointer-span">edit</mat-icon>
+				<mat-icon class="cursor-pointer-span" (click)="delete(element.id)">delete</mat-icon>
 			</mat-cell>
 		</ng-container>
 

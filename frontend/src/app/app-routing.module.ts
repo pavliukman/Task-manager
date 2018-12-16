@@ -4,11 +4,9 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
-import { AuthService } from './services/auth.service';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
-import { AppComponent } from './app.component';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
+import { ProjectEditComponent } from './components/project-edit/project-edit.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
@@ -20,6 +18,7 @@ const routes: Routes = [
 			{ path: '', component: ProjectsComponent, canActivate: [AuthGuard], data: { title: 'Main' } },
 			{ path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard], data: { title: 'Projects' } },
 			{ path: 'projects/:id', component: ProjectDetailComponent, canActivate: [AuthGuard] },
+			{ path: 'projects/:id/edit', component: ProjectEditComponent, canActivate: [AuthGuard] },
 			// { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { title: 'Dashboard' } },
 			{ path: 'user/:user-id', component: ProfileDetailComponent, canActivate: [AuthGuard] }
 		]
