@@ -11,6 +11,7 @@ from time_manager.serializers import TaskSerializer, ProjectSerializer, UserSeri
 
 logger = logging.getLogger('123')
 
+
 def index(request):
     return HttpResponse("Hello world")
 
@@ -108,6 +109,7 @@ class TaskDetail(APIView):
 
 
 class UsersList(APIView):
+
     def get(self, request):
         search = self.request.query_params.get('search', None)
         exclude = self.request.query_params.get('exclude', None)
@@ -121,6 +123,13 @@ class UsersList(APIView):
             users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # send user data with token

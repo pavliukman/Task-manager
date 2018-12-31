@@ -19,7 +19,6 @@ export class ProjectsComponent implements OnInit {
 	displayedColumns = ['name', 'description', 'action'];
 	projectForm: FormGroup;
 	isLoading: boolean = true;
-	newBool = 'ProjectsComponent';
 
 	constructor(private projectService: ProjectService,
 		private userService: UserService,

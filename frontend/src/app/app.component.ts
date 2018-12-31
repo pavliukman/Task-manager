@@ -6,6 +6,7 @@ import { DataService } from './services/data.service';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-root',
@@ -16,7 +17,12 @@ export class AppComponent {
 	user: User;
 
 	constructor(public auth: AuthService,
-		public data: DataService) {
+		public data: DataService,
+		private router: Router) {
+		if (localStorage.getItem('token') === '') {
+			this.router.navigate(['/login']);
+			return;
+		}
 	}
 
 	logout() {

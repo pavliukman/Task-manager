@@ -19,11 +19,9 @@ export class LoginComponent implements OnInit {
 		public snackBar: MatSnackBar) { }
 
 	ngOnInit() {
-		this.auth.isLoggedIn().subscribe(user => {
-			if (user.token) {
-				this.router.navigate(['profile']);
-			}
-		});
+		if (this.auth.getToken() !== null) {
+			this.router.navigate(['profile']);
+		}
 	}
 
 	openSnackBar(message: string, action: string) {
