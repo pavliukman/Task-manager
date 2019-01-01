@@ -19,7 +19,7 @@ export class AppComponent {
 	constructor(public auth: AuthService,
 		public data: DataService,
 		private router: Router) {
-		if (localStorage.getItem('token') === '') {
+		if (localStorage.getItem('token') === null) {
 			this.router.navigate(['/login']);
 			return;
 		}
